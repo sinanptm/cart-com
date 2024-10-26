@@ -1,3 +1,4 @@
+import { memo } from "react";
 
 const Cart = () => {
   return (
@@ -5,4 +6,4 @@ const Cart = () => {
   )
 }
 
-export default Cart
+export default memo(Cart)

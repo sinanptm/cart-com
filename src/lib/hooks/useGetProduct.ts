@@ -21,7 +21,7 @@ export const useGetProduct =  (slug:string)=>{
 
     useEffect(()=>{
         fetchProduct();
-    },[]);
+    },[fetchProduct]);
 
     return {
         isLoading,

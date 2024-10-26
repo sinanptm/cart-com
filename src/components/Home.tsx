@@ -6,9 +6,9 @@ const Home = () => {
   const [page, setPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(10);
   const { products } = useGetProducts({ searchTerm, page, pageSize });
-  
 
   return (
+
     <div>
       {products.map((product, i) => (
         <div key={i}>

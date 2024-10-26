@@ -24,7 +24,7 @@ export const useGetProducts = ({ page, pageSize, searchTerm }: GetProductsQuery)
 
     useEffect(() => {
         fetchProducts();
-    });
+    }, [fetchProducts]);
 
     return {
         isLoading,

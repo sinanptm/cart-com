@@ -13,28 +13,19 @@ const Home = () => {
 
   const totalPages = useMemo(() => Math.ceil(totalProductsCount / pageSize), [totalProductsCount, pageSize]);
 
-  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
-
   useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedSearchTerm(searchTerm);
-    }, 500); 
-
-    return () => clearTimeout(handler); 
-  }, [searchTerm]);
-
-  useEffect(() => {
-    setSearchParams({ query: debouncedSearchTerm, page: page.toString() });
-  }, [debouncedSearchTerm, page, setSearchParams]);
+    setSearchParams({ page: page.toString() });
+  }, [page, setSearchParams]);
 
   const handlePageChange = useCallback((newPage: number) => {
     setPage(newPage);
     setSearchParams({ page: newPage.toString() });
   }, [setSearchParams]);
 
-  const handleSearchInput = (term: string) => {
+  const handleSearchInput = useCallback((term: string) => {
+    setSearchParams({ query: term });
     setSearchTerm(term);
-  };
+  }, []);
 
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -106,7 +97,7 @@ const Home = () => {
               <div
                 className="flex items-center justify-center pb-5"
               >
-                <AddToCart />
+                <AddToCart product={{ slug, available_quantity, image_url, mrp, name, offer_price }} />
               </div>
 
             </article>
